@@ -22,22 +22,22 @@ const firebaseConfig = {
 
 document.getElementById("feedbackform").addEventListener("submit",submitform);
 
-function submitform(e){
+async function submitform(e) {
   e.preventDefault()
   
-  const nameInput = document.getElementById("name");
-  const nameError = document.getElementById("nameError");
-  var yourname= getElementVal("name");
-  var regno=getElementVal("numbe");
-  var phone=getElementVal("number");
-  var email=getElementVal("email");
-  var message=getElementVal("message");
+   const nameInput = await document.getElementById("name");
+  const nameError = await document.getElementById("nameError");
+  var yourname= await getElementVal("name");
+  var regno=await getElementVal("numbe");
+  var phone=await getElementVal("number");
+  var email=await getElementVal("email");
+  var message=await getElementVal("message");
   
-db.collection("responses").add({
+await db.collection("responses").add({
   name: yourname,
   regno, phone, email, message
 })
-
+location.reload();
 }
 const getElementVal=(id)=>{
     return document.getElementById(id).value;
